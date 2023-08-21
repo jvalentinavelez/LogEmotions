@@ -7,14 +7,19 @@ const { readData, writeData } = require('./util');
 async function getAll() {
     const storedData = await readData();
     if (!storedData.logs) {
-      throw new NotFoundError('Could not find any logs.');
+      //throw new NotFoundError('Could not find any logs.');
+      return storedData.logs =  [];
+    } else {
+      return storedData.logs;
     }
-    return storedData.logs;
+    
 }
 
 // get
 async function get(id) {
     const storedData = await readData();
+    console.log("get");
+    console.log(storedData);
     if (!storedData.logs || storedData.logs.length === 0) {
       throw new NotFoundError('Could not find any logs.');
     }

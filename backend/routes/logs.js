@@ -43,8 +43,6 @@ router.post('/', async (req, res, next) => {
         errors,
       });
     }
-
-    console.log(data);
   
     try {
       await add(data);

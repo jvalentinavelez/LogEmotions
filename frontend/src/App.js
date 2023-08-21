@@ -7,7 +7,7 @@ import AuthenticationPage, { action as authAction, } from './pages/Authenticatio
 import { action as logoutAction } from './pages/Logout';
 import { checkAuthLoader, tokenLoader } from './utils/auth';
 
-//import EntriesPage from './pages/DiaryEntries';
+import EntriesPage, { loader as logsLoader } from './pages/Logs';
 import LogsNavigation from './components/LogsNavigation';
 import NewLogPage from './pages/NewLog';
 
@@ -28,6 +28,11 @@ const router = createBrowserRouter([
         path: 'logs',
         element: <LogsNavigation />,
         children: [
+          {
+            index: true,
+            element: <EntriesPage />,
+            loader: logsLoader,
+          },
           { 
             path: 'new',
             element: <NewLogPage/>,

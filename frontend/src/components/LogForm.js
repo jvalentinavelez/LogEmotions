@@ -49,7 +49,7 @@ const LogForm = ({ method, log }) => {
       };
     
       const handleFormSubmit = async (e, method) => {
-        e.preventDefault();
+        //e.preventDefault();
         
         const logEntry = {      
           date: e.target.date.value, // Accede al valor del campo de fecha
