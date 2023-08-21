@@ -22,23 +22,45 @@ const MainNavigation = () => {
             </NavLink>
           </li>
           {!token && (
-            <li>
-              <NavLink
-                to="/auth?mode=login"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-              >
-                Log in / Register
-              </NavLink>
-            </li>
+            <>
+              <li>
+                <NavLink
+                  to="/auth?mode=login"
+                  className={({ isActive }) =>
+                    isActive ? classes.active : undefined
+                  }
+                >
+                  Log in / Register
+                </NavLink>
+              </li>
+            </>            
           )}
           {token && (
-            <li>
-              <Form action="/logout" method="post">
-                <button>Logout</button>
-              </Form>
-            </li>
+            <>
+              <li>
+                <NavLink to="/logs"
+                  className={({ isActive }) =>
+                    isActive ? classes.active : undefined
+                  }
+                >
+                  How am I feeling? 
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to=""
+                  className={({ isActive }) =>
+                    isActive ? classes.active : undefined
+                  }
+                >
+                  Over time Log
+                </NavLink>
+              </li>
+              <li>
+                <Form action="/logout" method="post">
+                  <button>Logout</button>
+                </Form>
+              </li>
+            </>
           )}
         </ul>
       </nav>
