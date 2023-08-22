@@ -36,8 +36,6 @@ async function add(data) {
     if (!storedData.logs) {
       storedData.logs = [];
     }
-    console.log("add function");
-    console.log(data);
     storedData.logs.unshift({ ...data, id: generateId() });
     await writeData(storedData);
 }

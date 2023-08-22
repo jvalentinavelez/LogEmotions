@@ -6,11 +6,14 @@ const { isValidDate } = require('../util/validation');
 
 const { Configuration, OpenAIApi } = require('openai');
 
-const configuration = new Configuration({
-    apiKey: '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',
-});
+// const configuration = new Configuration({
+//     apiKey: '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',
+// });
 
-const openai = new OpenAIApi(configuration);
+//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
+//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
+
+// const openai = new OpenAIApi(configuration);
 
 const router = express.Router();
 
@@ -52,17 +55,17 @@ router.post('/', async (req, res, next) => {
 
     try {
   
-    const prompt = `Analyze the sentiment of the following text:\n"${data.notes}"\n\nSentiment:`;
+    //const prompt = `Analyze the sentiment of the following text:\n"${data.notes}"\n\nSentiment:`;
 
     // Use the OpenAI API to generate sentiment analysis
-    const response = await openai.createCompletion({
-      model: 'text-davinci-003',
-      prompt: prompt,
-    });
-    const sentimentLabel = response.data.choices[0].text.trim();
+    // const response = await openai.createCompletion({
+    //   model: 'text-davinci-003',
+    //   prompt: prompt,
+    // });
+    // const sentimentLabel = response.data.choices[0].text.trim();
 
-    // Add sentiment analysis to the data object
-    data.sentiment = sentimentLabel;
+    // // Add sentiment analysis to the data object
+    // data.sentiment = sentimentLabel;
     await add(data);
 
     res.status(201).json({
@@ -71,7 +74,8 @@ router.post('/', async (req, res, next) => {
     });
   } catch (error) {
     console.log("error");
-    console.log(error);
+    console.log(error.response.status);
+    console.log(error.response.statusText);
     next(error);
     
   }

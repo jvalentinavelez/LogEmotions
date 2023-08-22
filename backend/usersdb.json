@@ -14,6 +14,13 @@
   "logs": [
     {
       "date": "2023-08-22",
+      "notes": "Doing my best",
+      "selectedEmotion": "happy",
+      "userId": "a66c62f4-b10b-408e-b14b-ce529f152dda",
+      "id": "59746ee0-c7f6-4a98-a8ab-0491ca812245"
+    },
+    {
+      "date": "2023-08-22",
       "notes": "I'm trying my best and I'm getting work done",
       "selectedEmotion": "happy",
       "userId": "ee14916c-9671-4a57-af02-96bf98d82cd4",

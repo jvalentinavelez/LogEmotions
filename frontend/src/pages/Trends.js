@@ -1,22 +1,21 @@
 import { Suspense } from 'react';
 import { useLoaderData, json, defer, Await } from 'react-router-dom';
 
-import LogsList from '../components/LogsList';
+import TrendsLog from '../components/TrendsLog';
 
-
-const EntriesPage = () => {
+const TrendsPage = () => {
     const { logs } = useLoaderData();
   
     return (
       <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
         <Await resolve={logs}>
-          {(loadedLogs) => <LogsList logs={loadedLogs} />}
+          {(loadedLogs) => <TrendsLog logs={loadedLogs} />}
         </Await>
       </Suspense>
     );
 }
 
-export default EntriesPage;
+export default TrendsPage;
 
 async function loadLogs() {
   const response = await fetch('http://localhost:8080/logs');
@@ -30,6 +29,7 @@ async function loadLogs() {
     );
   } else {
     const resData = await response.json();
+    console.log(resData);
     return resData.logs;
   }
 }

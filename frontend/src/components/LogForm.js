@@ -51,7 +51,6 @@ const LogForm = ({ method, log }) => {
       };
     
       const handleFormSubmit = async (e, method) => {
-        //e.preventDefault();
         
         const logEntry = {      
           date: e.target.date.value, // Accede al valor del campo de fecha
@@ -60,7 +59,6 @@ const LogForm = ({ method, log }) => {
           userId: userId,
         };
         const response = await action({method, logEntry});
-        //const response = await action({ request, params, logEntry });
       };
       
 
@@ -128,26 +126,6 @@ export default LogForm;
 
 export async function action({method, logEntry}) {
 
-    // console.log(request);
-    // const method = request.method;
-    // console.log()
-    // const data = await request.formData();
-
-    // console.log(data)
-
-    // // Obtén los valores de logData
-    // const { date, notes, selectedEmotion } = logEntry;
-  
-    // // Ahora combina los valores de logData con los valores obtenidos de formData
-    // const combinedData = {
-    //   date: date || data.get('date'), // Usa logData.date si está disponible, de lo contrario, usa formData
-    //   notes: notes || data.get('description'), // Usa logData.notes si está disponible, de lo contrario, usa formData
-    //   selectedEmotion: selectedEmotion,
-    // };
-  
-
-    // console.log(logData)
-  
     let url = 'http://localhost:8080/logs';
   
     // if (method === 'PATCH') {
@@ -165,7 +143,7 @@ export async function action({method, logEntry}) {
     body: JSON.stringify(logEntry),
     });
 
-    console.log(response);
+    //console.log(response);
   
     if (response.status === 422) {
       return response;

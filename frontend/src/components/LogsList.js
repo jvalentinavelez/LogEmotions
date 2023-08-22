@@ -13,7 +13,7 @@ import img5 from '../assets/images/emotions/awful.png';
 
 const LogsList = ({logs})  => {
 
-  console.log(logs);
+  //console.log(logs);
   const userId = localStorage.getItem('userId');
 
     const emotions = [
@@ -33,7 +33,7 @@ const LogsList = ({logs})  => {
       setUserLogs(filteredLogs);
     }, [logs, userId]);
 
-    console.log(userLogs);
+    //console.log(userLogs);
 
   return (
     <div className={classes.logs}>

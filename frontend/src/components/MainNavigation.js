@@ -47,7 +47,7 @@ const MainNavigation = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to=""
+                <NavLink to="/trends"
                   className={({ isActive }) =>
                     isActive ? classes.active : undefined
                   }
