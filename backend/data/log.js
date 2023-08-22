@@ -18,8 +18,6 @@ async function getAll() {
 // get
 async function get(id) {
     const storedData = await readData();
-    console.log("get");
-    console.log(storedData);
     if (!storedData.logs || storedData.logs.length === 0) {
       throw new NotFoundError('Could not find any logs.');
     }
@@ -38,8 +36,9 @@ async function add(data) {
     if (!storedData.logs) {
       storedData.logs = [];
     }
+    console.log("add function");
+    console.log(data);
     storedData.logs.unshift({ ...data, id: generateId() });
-    console.log(storedData.logs);
     await writeData(storedData);
 }
 

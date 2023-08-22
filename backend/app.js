@@ -4,8 +4,12 @@ const express = require('express');
 const authRoutes = require('./routes/auth');
 const eventRoutes = require('./routes/logs');
 
-
+//Setup server
 const app = express();
+
+const openai = require('openai');
+
+openai.apiKey = process.env.OPENAI_API_KEY;
 
 app.use(bodyParser.json());
 app.use((req, res, next) => {

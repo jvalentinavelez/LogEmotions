@@ -10,6 +10,8 @@ import img5 from '../assets/images/emotions/awful.png';
 
 const LogsList = ({logs})  => {
 
+  console.log(logs)
+
     const emotions = [
         { id: "rad", label: "rad", image: img1 },
         { id: "happy", label: "happy", image: img2 },
@@ -23,7 +25,10 @@ const LogsList = ({logs})  => {
     <div className={classes.logs}>
       <h1>All Logs</h1>
       {logs.length === 0 ? (
-        <p>No logs to display.</p>
+        <div className={classes.item}>
+            <p>No logs entered yet.</p>
+            <p>Why not start by registering your daily emotions throughout the day?</p>
+        </div>
         ) : (
       <ul className={classes.list}>
         {logs.map((log) => (
@@ -34,6 +39,7 @@ const LogsList = ({logs})  => {
               <div className={classes.content}>
                 <time>{log.date}</time>
                 <p>Notes: {log.notes}</p>
+                <p>Analysis: {log.sentiment ? log.sentiment : ''}</p>
               </div>
             </Link>
           </li>
