@@ -7,7 +7,7 @@ const { isValidDate } = require('../util/validation');
 const { Configuration, OpenAIApi } = require('openai');
 
 const configuration = new Configuration({
-    apiKey: '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',
+    apiKey: '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',
 });
 
 const openai = new OpenAIApi(configuration);

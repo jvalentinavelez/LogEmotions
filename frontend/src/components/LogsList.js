@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom';
 
 import classes from './LogsList.module.css';
 
+import { useState, useEffect } from 'react';
+
+
 import img1 from '../assets/images/emotions/rad.png';
 import img2 from '../assets/images/emotions/smile.png';
 import img3 from '../assets/images/emotions/neutral.png';
@@ -10,7 +13,8 @@ import img5 from '../assets/images/emotions/awful.png';
 
 const LogsList = ({logs})  => {
 
-  console.log(logs)
+  console.log(logs);
+  const userId = localStorage.getItem('userId');
 
     const emotions = [
         { id: "rad", label: "rad", image: img1 },
@@ -19,19 +23,29 @@ const LogsList = ({logs})  => {
         { id: "sad", label: "sad", image: img4 },
         { id: "awful", label: "awful", image: img5 },
 
-      ];
+    ];
+
+    const [userLogs, setUserLogs] = useState([]);
+
+    useEffect(() => {
+      // Filter logs by authenticated user's ID
+      const filteredLogs = logs.filter(log => log.userId === userId);
+      setUserLogs(filteredLogs);
+    }, [logs, userId]);
+
+    console.log(userLogs);
 
   return (
     <div className={classes.logs}>
       <h1>All Logs</h1>
-      {logs.length === 0 ? (
+      {userLogs.length === 0 ? (
         <div className={classes.item}>
             <p>No logs entered yet.</p>
             <p>Why not start by registering your daily emotions throughout the day?</p>
         </div>
         ) : (
       <ul className={classes.list}>
-        {logs.map((log) => (
+        {userLogs.map((log) => (
           <li key={log.id} className={classes.item}>
             <Link to={`/logs/${log.id}`}>
             <img src={emotions.find(emotion => emotion.id === log.selectedEmotion)?.image}

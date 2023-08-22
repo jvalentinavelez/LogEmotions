@@ -21,6 +21,8 @@ const LogForm = ({ method, log }) => {
     const data = useActionData();
     const navigate = useNavigate();
     const navigation = useNavigation();
+
+    const userId = localStorage.getItem('userId');
   
     const isSubmitting = navigation.state === 'submitting';
 
@@ -55,6 +57,7 @@ const LogForm = ({ method, log }) => {
           date: e.target.date.value, // Accede al valor del campo de fecha
           notes: e.target.description.value, // Accede al valor del campo de notas
           selectedEmotion: selectedEmotion, // Agrega selectedEmotion
+          userId: userId,
         };
         const response = await action({method, logEntry});
         //const response = await action({ request, params, logEntry });
