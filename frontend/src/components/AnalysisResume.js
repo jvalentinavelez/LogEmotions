@@ -2,11 +2,14 @@ import  React from 'react';
 
 import classes from './AnalysisResume.module.css';
 
-const AnalysisResume = ({logs}) => {
+const AnalysisResume = ({summary}) => {
+
+    console.log(summary);
 
     return(
         <>
-        <div className={classes.summary}>
+        <h2>Analysis Resume</h2>
+        <div className={classes.summary}>{summary}
         </div>
         </>    
     )

@@ -11,12 +11,11 @@ import EntriesPage, { loader as logsLoader } from './pages/Logs';
 import LogsNavigation from './components/LogsNavigation';
 import NewLogPage from './pages/NewLog';
 
+import TrendsLogPage , { loader as  resumeLoader } from './components/TrendsLog';
 
 import { action as manipulateEventAction} from './components/LogForm';
 
 import TrendsPage , { loader as statsLoader }  from './pages/Trends';
-
-
 
 const router = createBrowserRouter([
   {
@@ -47,6 +46,13 @@ const router = createBrowserRouter([
         path: 'trends',
         element: <TrendsPage />,
         loader: statsLoader,
+        children: [
+          {
+            index: true,
+            element: <TrendsLogPage />,
+            loader: resumeLoader,
+          },
+        ]
       },
       { 
         path: 'auth',
