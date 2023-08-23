@@ -4,7 +4,6 @@ import classes from './LogsList.module.css';
 
 import { useState, useEffect } from 'react';
 
-
 import img1 from '../assets/images/emotions/rad.png';
 import img2 from '../assets/images/emotions/smile.png';
 import img3 from '../assets/images/emotions/neutral.png';
@@ -13,7 +12,6 @@ import img5 from '../assets/images/emotions/awful.png';
 
 const LogsList = ({logs})  => {
 
-  //console.log(logs);
   const userId = localStorage.getItem('userId');
 
     const emotions = [

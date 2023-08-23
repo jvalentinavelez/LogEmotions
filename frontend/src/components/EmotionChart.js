@@ -1,6 +1,9 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { Typography, Paper, colors } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
+
+ChartJS.register( CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
 const EmotionChart = ({ logs }) => {
 
@@ -12,51 +15,86 @@ const EmotionChart = ({ logs }) => {
         rad: 4,
       };
 
-    // Crear un registro por cada combinación de fecha y emoción
     const data = {};
 
-    // Procesar cada registro de log
     logs.forEach(log => {
         const { id, date, selectedEmotion } = log;
         
-        // Si aún no hay un objeto para esta fecha, créalo
         if (!data[date]) {
         data[date] = { date };
         }
 
-        // Agregar la emoción con el valor correspondiente
-        data[date][selectedEmotion] = emotionValues[selectedEmotion];
+        data[date][selectedEmotion] = Object.keys(emotionValues).indexOf(selectedEmotion);
     });
 
     const dataArray = Object.values(data).sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    // Obtener un array con los valores numéricos de las emociones en dataArray
+    const allEmotionNumericValuesArray = dataArray.flatMap(item =>
+        Object.keys(emotionValues).map(emotion => item[emotion] !== undefined ? item[emotion] : -1)
+    ).filter(value => value !== undefined && value !== -1);
 
-    console.log(dataArray)
+    // Obtener una array de etiquetas para el eje Y 
+    const yLabels = Object.keys(emotionValues);
+    
+    const chartData = {
+        labels: dataArray.map(item => item.date),
+        datasets: [ 
+            {
+                label: 'Emocion',
+                data: allEmotionNumericValuesArray,
+                tension: 0.5,
+                fill : true,
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                pointRadius: 5,
+                pointBorderColor: 'rgba(255, 99, 132)',
+                pointBackgroundColor: 'rgba(255, 99, 132)',
+            },
+        ],
+    };
+
+    const chartOptions = {
+        scales : {
+            y: {
+                min: 0,
+                max: 4,
+                ticks: {
+                    color: 'rgb(255, 99, 132)',
+                    callback: (value) => yLabels[value],
+                },
+            },
+            x: {
+                ticks: { color: 'rgb(255, 99, 132)'}
+            }
+        },
+        plugins: {
+            legend: {
+                display: false, // Oculta las etiquetas de leyenda
+            },
+            tooltip: {
+                callbacks: {
+                    label: (context) => {
+                        const datasetLabel = context.dataset.label || '';
+                        const emotionValue = context.parsed.y;
+                        const emotion = Object.keys(emotionValues).find(
+                            key => emotionValues[key] === emotionValue
+                        );
+                        return `${datasetLabel}: ${emotion}`;
+                    },
+                },
+            },
+        },
+
+    };
 
     return (
         <Paper elevation={3} style={{ padding: '20px' }}>
-            <Typography variant="h5" gutterBottom>
-                Emotions Over Time
-            </Typography>
-            <ResponsiveContainer width="100%" height={300}>
-                <LineChart width={400} height={300} data={dataArray}>
-                    <XAxis dataKey="date" />
-                    <YAxis domain={[0, 4]} />
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <Tooltip />
-                    <Legend />
-                    {Object.keys(emotionValues).map((emotion) => (
-                        <Line
-                        type="linear"
-                        dataKey={emotion}
-                        stroke="#5752c0"
-                        activeDot={{ r: 12 }}
-                        key={emotion}
-                        connectNulls = {false}
-                        />
-                    ))}
-                </LineChart>
-            </ResponsiveContainer>
-        </Paper>
+        <Typography variant="h5" gutterBottom>
+          Emotions Over Time
+        </Typography>
+        <Line data={chartData} options={chartOptions}/>
+      </Paper>
   );
 };
 

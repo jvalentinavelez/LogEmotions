@@ -1,0 +1,9 @@
+.calendarDate {
+    color: var(--color-gray-800);
+}
+
+.badgeIcon{
+    width: 15px;
+    height: 15px;
+    margin: 2px; 
+}

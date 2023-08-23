@@ -1,4 +1,4 @@
-import { Suspense,useState, useEffect } from 'react';
+import { Suspense } from 'react';
 import { useLoaderData, json, defer, Await } from 'react-router-dom';
 
 import TrendsLog from '../components/TrendsLog';
