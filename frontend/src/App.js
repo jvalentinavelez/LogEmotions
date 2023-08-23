@@ -11,9 +11,10 @@ import EntriesPage, { loader as logsLoader } from './pages/Logs';
 import LogsNavigation from './components/LogsNavigation';
 import NewLogPage from './pages/NewLog';
 
+
 import { action as manipulateEventAction} from './components/LogForm';
 
-import TrendsPage from './components/TrendsLog';
+import TrendsPage , { loader as statsLoader }  from './pages/Trends';
 
 
 
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
       { 
         path: 'trends',
         element: <TrendsPage />,
+        loader: statsLoader,
       },
       { 
         path: 'auth',

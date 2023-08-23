@@ -5,18 +5,12 @@
   }
 
   .statsContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr; /* Por defecto, una columna en dispositivos pequeños */
+    gap: 20px;
   }
   
-  .row {
-    display: flex;
-    justify-content: space-between;
-    width: 30rem;
-  }
-  
+
   .stat {
     width: 550px;
     height: 200px;
@@ -30,5 +24,20 @@
     overflow: hidden;
   }
 
-  
+  .calendarDate {
+    color: var(--color-gray-800);
+  }
+
+  .badgeIcon{
+    width: 15px;
+  height: 15px;
+  margin: 2px; 
+  }
+
+  @media (min-width: 768px) {
+    /* Cambia a dos columnas en dispositivos con ancho mínimo de 768px */
+    .statsContainer {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
   
