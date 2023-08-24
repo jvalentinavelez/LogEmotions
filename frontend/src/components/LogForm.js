@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { getAuthToken } from '../utils/auth';
 import classes from './LogForm.module.css';
 
+
 import img1 from '../assets/images/emotions/rad.png';
 import img2 from '../assets/images/emotions/smile.png';
 import img3 from '../assets/images/emotions/neutral.png';
@@ -41,28 +42,32 @@ const LogForm = ({ method, log }) => {
         { id: "sad", label: "sad", image: img4 },
         { id: "awful", label: "awful", image: img5 },
 
-      ];
+    ];
     
-      const [selectedEmotion, setSelectedEmotion] = useState("neutral");
+    const [selectedEmotion, setSelectedEmotion] = useState("neutral");
     
-      const handleEmotionChange = (e, emotionId) => {
+    const handleEmotionChange = (e, emotionId) => {
         e.preventDefault();
         setSelectedEmotion(emotionId);
-      };
+    };
     
-      const handleFormSubmit = async (e, method) => {
-        
-        const logEntry = {      
-          date: e.target.date.value, // Accede al valor del campo de fecha
-          notes: e.target.description.value, // Accede al valor del campo de notas
-          selectedEmotion: selectedEmotion, // Agrega selectedEmotion
-          userId: userId,
-        };
-        const response = await action({method, logEntry});
-      };
-      
+    const handleFormSubmit = async (e, method) => {
+    
+    const logEntry = {      
+        date: e.target.date.value, // Accede al valor del campo de fecha
+        notes: e.target.description.value, // Accede al valor del campo de notas
+        selectedEmotion: selectedEmotion, // Agrega selectedEmotion
+        userId: userId,
+    };
+    const actionResult = await action({ method, logEntry });
 
-  
+    if (actionResult.success) {
+        navigate('/logs');
+        } else {
+        
+        }
+    };
+      
     return (
         <Form method={method} className={classes.form} onSubmit={(e)=>handleFormSubmit(e,method)}>
             {data && data.errors && (
@@ -125,33 +130,35 @@ const LogForm = ({ method, log }) => {
 export default LogForm;
 
 export async function action({method, logEntry}) {
-
-    let url = 'http://localhost:8080/logs';
+    try {
+        let url = 'http://localhost:8080/logs';
   
-    // if (method === 'PATCH') {
-    //   const eventId = params.eventId;
-    //   url = 'http://localhost:8080/logs' + eventId;
-    // }
-  
-    const token = getAuthToken();
-    const response = await fetch(url, {
-    method: method,
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-    },
-    body: JSON.stringify(logEntry),
-    });
-
-    //console.log(response);
-  
-    if (response.status === 422) {
-      return response;
-    }
-  
-    if (!response.ok) {
-      throw json({ message: 'Could not save log.' }, { status: 500 });
-    }
-  
-    return redirect('/logs');
+        // if (method === 'PATCH') {
+        //   const eventId = params.eventId;
+        //   url = 'http://localhost:8080/logs' + eventId;
+        // }
+      
+        const token = getAuthToken();
+        const response = await fetch(url, {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(logEntry),
+        });
+    
+        if (response.status === 422) {
+          return { success: false, response };
+        }
+    
+        if (!response.ok) {
+          throw json({ message: 'Could not save log.' }, { status: 500 });
+        }
+    
+        return { success: true, response };
+      } catch (error) {
+        return { success: false, error };
+      }
+    
 }

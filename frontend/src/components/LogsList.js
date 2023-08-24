@@ -24,39 +24,49 @@ const LogsList = ({logs})  => {
     ];
 
     const [userLogs, setUserLogs] = useState([]);
+    const [isLoading, setIsLoading] = useState(true); // Add loading state
+
+    // useEffect(() => {
+    //   // Filter logs by authenticated user's ID
+    //   const filteredLogs = logs.filter(log => log.userId === userId);
+    //   setUserLogs(filteredLogs);
+    // }, [logs, userId]);
 
     useEffect(() => {
-      // Filter logs by authenticated user's ID
       const filteredLogs = logs.filter(log => log.userId === userId);
       setUserLogs(filteredLogs);
+      setIsLoading(false); // Set loading to false once logs are filtered
     }, [logs, userId]);
 
-    //console.log(userLogs);
+    console.log(userLogs);
 
   return (
     <div className={classes.logs}>
       <h1>All Logs</h1>
-      {userLogs.length === 0 ? (
+      {isLoading ? ( // Show loading message while fetching logs
+        <p>Loading logs...</p>
+      ) : userLogs.length === 0 ? (
         <div className={classes.item}>
             <p>No logs entered yet.</p>
             <p>Why not start by registering your daily emotions throughout the day?</p>
         </div>
         ) : (
-      <ul className={classes.list}>
-        {userLogs.map((log) => (
-          <li key={log.id} className={classes.item}>
-            <Link to={`/logs/${log.id}`}>
-            <img src={emotions.find(emotion => emotion.id === log.selectedEmotion)?.image}
-             alt={log.selectedEmotion} />
-              <div className={classes.content}>
-                <time>{log.date}</time>
-                <p>Notes: {log.notes}</p>
-                <p>Analysis: {log.sentiment ? log.sentiment : ''}</p>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>)}
+        <ul className={classes.list}>
+          {userLogs.map((log) => (
+            <li key={log.id} className={classes.item}>
+              <Link to={`/logs/${log.id}`}>
+              <img src={emotions.find(emotion => emotion.id === log.selectedEmotion)?.image}
+              alt={log.selectedEmotion} />
+                <div className={classes.content}>
+                  <time>{log.date}</time>
+                  <p>Notes: {log.notes}</p>
+                  <p>Analysis: {log.sentiment ? log.sentiment : ''}</p>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        )}
     </div>
   );
 }
