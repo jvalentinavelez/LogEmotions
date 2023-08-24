@@ -7,11 +7,11 @@ import { Badge, Typography } from "@mui/material";
 import { styled } from '@mui/system';
 
 
-import img1 from '../assets/images/emotions/rad.png';
-import img2 from '../assets/images/emotions/smile.png';
-import img3 from '../assets/images/emotions/neutral.png';
-import img4 from '../assets/images/emotions/sad.png';
-import img5 from '../assets/images/emotions/awful.png';
+import img1 from '../../assets/images/emotions/rad.png';
+import img2 from '../../assets/images/emotions/smile.png';
+import img3 from '../../assets/images/emotions/neutral.png';
+import img4 from '../../assets/images/emotions/sad.png';
+import img5 from '../../assets/images/emotions/awful.png';
 
 import classesCL from './CalendarLogs.module.css';
 

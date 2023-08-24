@@ -1,0 +1,22 @@
+.calendarDate {
+    color: var(--color-gray-800);
+    width: 600px;
+    margin-left: 40px;
+    font-size: 18px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.customTitle {
+    font-size: 50px; 
+    font-weight: bold; 
+  }
+
+.badgeIcon{
+    width: 15px;
+    height: 15px;
+    margin: 2px; 
+}

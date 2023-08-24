@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { useLoaderData, json, defer, Await } from 'react-router-dom';
 
-import TrendsLog from '../components/TrendsLog';
+import TrendsLog from '../components/trendsNav/TrendsLog';
 
 const TrendsPage = () => {
     const { logs } = useLoaderData();

@@ -67,7 +67,7 @@ const EmotionChart = ({ logs }) => {
                 },
             },
             x: {
-                ticks: { color: 'rgba(106, 116, 134, 1)'}
+                ticks: { color: 'rgba(106, 116, 134, 1)'},
             }
         },
         plugins: {

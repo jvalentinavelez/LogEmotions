@@ -1,4 +1,4 @@
-import LogForm from '../components/LogForm';
+import LogForm from '../components/logsNav/LogForm';
 
 function NewLogPage() {
   return <LogForm method="post" />;

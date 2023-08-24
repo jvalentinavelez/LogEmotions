@@ -8,12 +8,12 @@ import { action as logoutAction } from './pages/Logout';
 import { checkAuthLoader, tokenLoader } from './utils/auth';
 
 import EntriesPage, { loader as logsLoader } from './pages/Logs';
-import LogsNavigation from './components/LogsNavigation';
+import LogsNavigation from './components/logsNav/LogsNavigation';
 import NewLogPage from './pages/NewLog';
 
-import TrendsLogPage , { loader as  resumeLoader } from './components/TrendsLog';
+import TrendsLogPage , { loader as  resumeLoader } from './components/trendsNav/TrendsLog';
 
-import { action as manipulateEventAction} from './components/LogForm';
+import { action as manipulateEventAction} from './components/logsNav/LogForm';
 
 import TrendsPage , { loader as statsLoader }  from './pages/Trends';
 

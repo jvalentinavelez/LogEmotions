@@ -8,15 +8,15 @@ import {
 } from 'react-router-dom';
 
 import { useState } from 'react';
-import { getAuthToken } from '../utils/auth';
+import { getAuthToken } from '../../utils/auth';
 import classes from './LogForm.module.css';
 
 
-import img1 from '../assets/images/emotions/rad.png';
-import img2 from '../assets/images/emotions/smile.png';
-import img3 from '../assets/images/emotions/neutral.png';
-import img4 from '../assets/images/emotions/sad.png';
-import img5 from '../assets/images/emotions/awful.png';
+import img1 from '../../assets/images/emotions/rad.png';
+import img2 from '../../assets/images/emotions/smile.png';
+import img3 from '../../assets/images/emotions/neutral.png';
+import img4 from '../../assets/images/emotions/sad.png';
+import img5 from '../../assets/images/emotions/awful.png';
 
 const LogForm = ({ method, log }) => {
     const data = useActionData();
@@ -89,6 +89,7 @@ const LogForm = ({ method, log }) => {
             </p>
             <div>
                 <label htmlFor="title">Today I'm feeling</label>
+                <p className={classes.labelFeeling}>Pick an image for your current mood. <em>Neutral</em> is pre-selected.</p>
                 <div className={classes.buttonContainer}>
                     {emotions.map(emotion => (
                         <button
@@ -123,6 +124,8 @@ const LogForm = ({ method, log }) => {
                 {isSubmitting ? 'Submitting...' : 'Save'}
             </button>
             </div>
+            <p className={classes.invite}> Share your emotion notes with us! Our AI will analyze and label them in the <em>analysis</em> section of each input.
+            Later, enjoy easy-to-follow summaries of these labeled emotions over time</p>
         </Form>
     );
 }

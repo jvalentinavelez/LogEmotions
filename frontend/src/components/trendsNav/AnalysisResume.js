@@ -2,9 +2,9 @@ import  React from 'react';
 
 import classes from './AnalysisResume.module.css';
 
-import img1 from '../../src/assets/images/emotions/curious.png';
-import img2 from '../../src/assets/images/emotions/cowboy.png';
-import img3 from '../../src/assets/images/emotions/pointing-right.png';
+import img1 from '../../../src/assets/images/emotions/curious.png';
+import img2 from '../../../src/assets/images/emotions/cowboy.png';
+import img3 from '../../../src/assets/images/emotions/pointing-right.png';
 
 const AnalysisResume = ({summary}) => {
 

@@ -1,9 +1,18 @@
-import {Outlet, NavLink, useRouteLoaderData } from 'react-router-dom';
+import {Outlet, NavLink, useRouteLoaderData, useNavigate } from 'react-router-dom';
+
+import { useState } from 'react';
 
 import classes from './LogsNavigation.module.css';
 
 const LogsNavigation = () => {
+  
   const token = useRouteLoaderData('root');
+    const navigate = useNavigate();
+  
+
+  const handleAllLogsClick = () => {
+    navigate('/logs');
+  };
 
   return (
     <>
@@ -17,6 +26,7 @@ const LogsNavigation = () => {
                 isActive ? classes.active : undefined
               }
               end
+              onClick={handleAllLogsClick}
             >
               All Logs
             </NavLink>
@@ -26,7 +36,7 @@ const LogsNavigation = () => {
               <NavLink
                 to="/logs/new"
                 className={({ isActive }) =>
-                  isActive ? classes.active : undefined
+                isActive ? classes.active : undefined
                 }
               >
                 New Log

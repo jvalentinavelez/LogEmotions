@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { useLoaderData, json, defer, Await } from 'react-router-dom';
 
-import LogsList from '../components/LogsList';
+import LogsList from '../components/logsNav/LogsList';
 
 
 const EntriesPage = () => {

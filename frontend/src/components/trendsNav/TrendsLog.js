@@ -9,18 +9,22 @@ import AnalysisResume from './AnalysisResume';
 
 const TrendsLog = ({logs}) => {
 
+  console.log(logs);
+
     const analysisAI = logs.map(log => log.sentiment);
     const { emotions } = useLoaderData();
   
     const [summary, setSummary] = useState('');
   
     useEffect(() => {
-      if (emotions && emotions.summary) {
-        setSummary(emotions.summary);
-      } else {
-        loadSummary(analysisAI);
+      if (logs.length > 0) { 
+        if (emotions && emotions.summary) {
+          setSummary(emotions.summary);
+        } else {
+          loadSummary(analysisAI);
+        }
       }
-    }, []); 
+    }, [logs]);
 
     const loadSummary = async emotionsData => {
         try {
