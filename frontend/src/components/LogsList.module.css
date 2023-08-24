@@ -1,9 +1,19 @@
+.dateInput {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px;
+  background-color: #fff;
+}
+
 .logs {
     margin: 2rem auto;
     max-width: 40rem;
   }
   
   .list {
+    margin: 20px;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -36,3 +46,15 @@
   .item p {
     margin: 0 0 1rem 0;
   }
+
+  .dateFilter {
+    margin-bottom: 1rem;
+  }
+  
+
+  
+  
+  
+  
+  
+  
