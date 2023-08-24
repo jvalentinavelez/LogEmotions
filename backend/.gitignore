@@ -3,3 +3,5 @@
 usersdb.json
 
 .DS_Store
+
+.vscode/
