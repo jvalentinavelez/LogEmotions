@@ -1,3 +1,5 @@
 .env
 
 usersdb.json
+
+.DS_Store

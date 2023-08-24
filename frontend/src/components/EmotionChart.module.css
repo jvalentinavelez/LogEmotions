@@ -1,0 +1,6 @@
+.chartTitle {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: var(--color-gray-800);
+}

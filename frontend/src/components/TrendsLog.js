@@ -30,7 +30,7 @@ const TrendsLog = ({logs}) => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              emotions: emotionsData, // Usar los registros de emociones
+              emotions: emotionsData, 
             }),
           });
     

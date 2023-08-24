@@ -1,6 +1,8 @@
 import React from 'react';
 import { Paper, Typography } from '@mui/material';
 import { Line } from 'react-chartjs-2';
+import classes from './EmotionChart.module.css';
+
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
 
 ChartJS.register( CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
@@ -60,17 +62,17 @@ const EmotionChart = ({ logs }) => {
                 min: 0,
                 max: 4,
                 ticks: {
-                    color: 'rgb(255, 99, 132)',
+                    color: 'rgba(106, 116, 134, 1)',
                     callback: (value) => yLabels[value],
                 },
             },
             x: {
-                ticks: { color: 'rgb(255, 99, 132)'}
+                ticks: { color: 'rgba(106, 116, 134, 1)'}
             }
         },
         plugins: {
             legend: {
-                display: false, // Oculta las etiquetas de leyenda
+                display: false, 
             },
             tooltip: {
                 callbacks: {
@@ -90,7 +92,7 @@ const EmotionChart = ({ logs }) => {
 
     return (
         <Paper elevation={3} style={{ padding: '20px' }}>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h5" gutterBottom fontWeight="300" className={classes.chartTitle}>
           Emotions Over Time
         </Typography>
         <Line data={chartData} options={chartOptions}/>
