@@ -6,6 +6,8 @@ const { readData, writeData } = require('./util');
 
 async function add(data) {
     const storedData = await readData();
+    console.log("add data");
+    console.log(storedData);
     const userId = generateId();
     const hashedPw = await hash(data.password, 12);
     if (!storedData.users) {
@@ -13,6 +15,9 @@ async function add(data) {
     }
     storedData.users.push({ ...data, password: hashedPw, id: userId });
     await writeData(storedData);
+    console.log("user.js")
+
+    console.log(storedData)
     return { id: userId, email: data.email };
 }
 

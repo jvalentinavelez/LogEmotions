@@ -1,6 +1,6 @@
 .env
 
-usersdb.json
+data/usersdb.json
 
 .DS_Store
 

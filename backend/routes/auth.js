@@ -38,6 +38,7 @@ router.post('/signup', async (req, res, next) => {
         .status(201)
         .json({ message: 'User created.', user: createdUser, token: authToken });
     } catch (error) {
+      console.log(error);
       next(error);
     }
 });
