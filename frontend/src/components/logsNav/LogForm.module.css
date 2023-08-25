@@ -67,7 +67,7 @@
 
 .buttonContainer {
     display: flex;
-    justify-content: center; /* Centra los botones horizontalmente */
+    justify-content: center; 
     align-items: center; 
   }
 
@@ -78,9 +78,9 @@
   }
 
 .emotionImage{
-    background-color: transparent; /* Hace el fondo transparente */
-    border: none; /* Elimina el borde */
-    padding: 0; /* Elimina el espacio interior del botón */
+    background-color: transparent; 
+    border: none; 
+    padding: 0; 
     cursor: pointer; 
     margin: 10px 10px; 
 }
@@ -88,7 +88,58 @@
 .emotionImage img {
     width: 50px; 
     height: 50px; 
-    border-radius: 50%; /* Mantiene la forma circular de la imagen */
+    border-radius: 50%;
   }
+
+  @media (max-width: 768px) {
+    .form {
+        max-width: 100%;
+        padding: 1rem;
+    }
+
+    .form label {
+        font-size: 14px;
+    }
+
+    .actions {
+        gap: 0.5rem;
+    }
+    .actions button {
+        padding: 0.4rem 1rem;
+    }
+
+    .invite {
+        font-size: 14px;
+    }
+
+    .emotions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .emotionImage {
+        margin: 10px 10px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .form input,
+    .form textarea {
+        padding: 0.2rem;
+    }
+
+    .actions button {
+        padding: 0.4rem 1rem;
+    }
+
+    .invite {
+        font-size: 13px;
+        margin-top: 10px;
+    }
+    .emotionImage {
+        margin: 10px 10px;
+    }
+}
 
   

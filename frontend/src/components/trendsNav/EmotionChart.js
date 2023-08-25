@@ -31,12 +31,10 @@ const EmotionChart = ({ logs }) => {
 
     const dataArray = Object.values(data).sort((a, b) => new Date(a.date) - new Date(b.date));
     
-    // Obtener un array con los valores numéricos de las emociones en dataArray
     const allEmotionNumericValuesArray = dataArray.flatMap(item =>
         Object.keys(emotionValues).map(emotion => item[emotion] !== undefined ? item[emotion] : -1)
     ).filter(value => value !== undefined && value !== -1);
 
-    // Obtener una array de etiquetas para el eje Y 
     const yLabels = Object.keys(emotionValues);
     
     const chartData = {

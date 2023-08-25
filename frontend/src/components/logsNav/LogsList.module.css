@@ -53,6 +53,48 @@
     margin-bottom: 1rem;
   }
   
+  /* For screens with a maximum width of 768px */
+@media (max-width: 768px) {
+  .logs {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .list {
+    margin: 10px;
+  }
+
+  .item img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .content {
+    padding: 0.5rem;
+  }
+}
+
+/* For screens with a maximum width of 480px */
+@media (max-width: 480px) {
+  .dateInput {
+    padding: 10px;
+  }
+
+  .list {
+    gap: 0.5rem;
+  }
+
+  .item p {
+    font-size: 12px;
+  }
+}
+
+
+
+
+
+
+
 
   
   

@@ -54,9 +54,9 @@ const LogForm = ({ method, log }) => {
     const handleFormSubmit = async (e, method) => {
     
     const logEntry = {      
-        date: e.target.date.value, // Accede al valor del campo de fecha
-        notes: e.target.description.value, // Accede al valor del campo de notas
-        selectedEmotion: selectedEmotion, // Agrega selectedEmotion
+        date: e.target.date.value, 
+        notes: e.target.description.value, 
+        selectedEmotion: selectedEmotion, 
         userId: userId,
     };
     const actionResult = await action({ method, logEntry });
