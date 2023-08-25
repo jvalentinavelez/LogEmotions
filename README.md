@@ -1,6 +1,6 @@
 # LogEmotions App
 
-![Logs Overview](frontend/src/assets/app/app_logs.png)
+<img src="/frontend/src/assets/app/app_logs.png" alt="Overview App"/>
 
 Welcome to the Awesome Emotion Tracker App, a user-friendly application designed to help you track your emotions over time and receive AI-based analyses of your inputs.
 
