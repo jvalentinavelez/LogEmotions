@@ -53,12 +53,6 @@ const LogsList = ({logs})  => {
       setSelectedDate(date);
     };
 
-    console.log(resetSelectedDate);
-
-
-
-
-
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
     <div className={classes.logs}>

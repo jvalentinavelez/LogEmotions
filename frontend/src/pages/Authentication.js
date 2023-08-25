@@ -40,10 +40,14 @@ export async function action({ request }) {
   }
 
   const resData = await response.json();
+  let userId= '';
   const token = resData.token;
-  const userId = resData.userId; 
-  //console.log('Authentication token: '+token);
-  //console.log('userId: '+userId);
+  if (mode == 'login'){    
+    userId = resData.userId; 
+  }
+  if (mode == 'signup'){
+    userId = resData.user.id; 
+  }
 
   localStorage.setItem('token', token);
   const expiration = new Date();
@@ -51,6 +55,7 @@ export async function action({ request }) {
   localStorage.setItem('expiration', expiration.toISOString());
 
   localStorage.setItem('userId', userId);
+  console.log("userId"+userId);
 
   return redirect('/');
 }
