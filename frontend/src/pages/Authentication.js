@@ -9,10 +9,14 @@ const AuthenticationPage = () => {
 
 export default AuthenticationPage;
 
+// Define the action function to handle user authentication
 export async function action({ request }) {
+
+  // Extract the 'mode' parameter from the URL query
   const searchParams = new URL(request.url).searchParams;
   const mode = searchParams.get('mode') || 'login';
 
+  // Check if the mode is supported (either 'login' or 'signup')
   if (mode !== 'login' && mode !== 'signup') {
     throw json({ message: 'Unsupported mode.' }, { status: 422 });
   }
@@ -23,6 +27,7 @@ export async function action({ request }) {
     password: data.get('password'),
   };
 
+   // Send a POST request to the appropriate endpoint based on the mode
   const response = await fetch('http://localhost:8080/' + mode, {
     method: 'POST',
     headers: {
@@ -40,8 +45,10 @@ export async function action({ request }) {
   }
 
   const resData = await response.json();
-  let userId= '';
   const token = resData.token;
+
+  // Determine the user ID based on the mode
+  let userId= '';
   if (mode == 'login'){    
     userId = resData.userId; 
   }
@@ -49,11 +56,13 @@ export async function action({ request }) {
     userId = resData.user.id; 
   }
 
+  // Store the token, expiration, and user ID in localStorage
   localStorage.setItem('token', token);
+  
   const expiration = new Date();
   expiration.setHours(expiration.getHours() + 1);
-  localStorage.setItem('expiration', expiration.toISOString());
 
+  localStorage.setItem('expiration', expiration.toISOString());
   localStorage.setItem('userId', userId);
 
   return redirect('/');

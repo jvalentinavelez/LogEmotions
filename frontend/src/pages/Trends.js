@@ -4,8 +4,10 @@ import { useLoaderData, json, defer, Await } from 'react-router-dom';
 import TrendsLog from '../components/trendsNav/TrendsLog';
 
 const TrendsPage = () => {
+  // Load logs using useLoaderData() hook
     const { logs } = useLoaderData();
 
+  // Get the userId from local storage
     const userId = localStorage.getItem('userId');
 
     return (
@@ -19,6 +21,7 @@ const TrendsPage = () => {
 
 export default TrendsPage;
 
+// Function to fetch logs data from the server
 async function statsLogs() {
   const response = await fetch('http://localhost:8080/logs');
 
@@ -35,6 +38,7 @@ async function statsLogs() {
   }
 }
 
+// Loader function to fetch logs and return them as a promise
 export function loader() {
   return defer({
     logs: statsLogs(),

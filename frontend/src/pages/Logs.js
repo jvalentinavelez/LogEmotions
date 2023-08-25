@@ -5,6 +5,7 @@ import LogsList from '../components/logsNav/LogsList';
 
 
 const EntriesPage = () => {
+  // Load the logs using useLoaderData() hook
     const { logs } = useLoaderData();
   
     return (
@@ -19,6 +20,7 @@ const EntriesPage = () => {
 export default EntriesPage;
 
 async function loadLogs() {
+  // Fetch logs data from the API
   const response = await fetch('http://localhost:8080/logs');
 
   if (!response.ok) {
@@ -34,6 +36,7 @@ async function loadLogs() {
   }
 }
 
+// Define the loader function to fetch and return logs using defer
 export function loader() {
   return defer({
     logs: loadLogs(),
