@@ -21,9 +21,10 @@ Follow these steps to install and run the Awesome Emotion Tracker App:
 
 1. Clone this repository: `git clone https://github.com/jvalentinavelez/LogEmotions.git`
 2. Navigate to the project directory: `cd LogEmotions`
-2. Access both the backend and frontend: `cd backend`, `cd frontend`
-3. Install dependencies in both folders: `npm install`
-4. Start the app in both folders: `npm start`
+3. Access both the backend and frontend: `cd backend`, `cd frontend`
+4. Install dependencies in both folders: `npm install`
+5. To use the OpeanAI Api, create a .env file in the backend folder and add the API key as: `OPENAI_API_KEY="your_API_Key"`
+6. Start the app in both folders: `npm start`
 
 
 ## Getting Started
