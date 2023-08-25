@@ -8,7 +8,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 ChartJS.register( CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
 const EmotionChart = ({ logs }) => {
-
+    // Mapping of emotion labels to their numeric values
     const emotionValues = {
         awful: 0,
         sad: 1,
@@ -18,25 +18,28 @@ const EmotionChart = ({ logs }) => {
       };
 
     const data = {};
-
+    // Populate data object with log information
     logs.forEach(log => {
         const { id, date, selectedEmotion } = log;
         
         if (!data[date]) {
         data[date] = { date };
         }
-
+        // Assign the numeric value to the corresponding emotion for the date
         data[date][selectedEmotion] = Object.keys(emotionValues).indexOf(selectedEmotion);
     });
-
+    // Convert the data object into an array and sort it by date
     const dataArray = Object.values(data).sort((a, b) => new Date(a.date) - new Date(b.date));
-    
+
+    // Flatten the numeric values of emotions into an array
     const allEmotionNumericValuesArray = dataArray.flatMap(item =>
         Object.keys(emotionValues).map(emotion => item[emotion] !== undefined ? item[emotion] : -1)
     ).filter(value => value !== undefined && value !== -1);
 
+    // Extract emotion labels for y-axis labels
     const yLabels = Object.keys(emotionValues);
     
+    // Construct chart data for rendering
     const chartData = {
         labels: dataArray.map(item => item.date),
         datasets: [ 
@@ -54,6 +57,7 @@ const EmotionChart = ({ logs }) => {
         ],
     };
 
+    // Chart configuration options
     const chartOptions = {
         scales : {
             y: {
@@ -75,6 +79,7 @@ const EmotionChart = ({ logs }) => {
             tooltip: {
                 callbacks: {
                     label: (context) => {
+                        // Get emotion label based on numeric value
                         const datasetLabel = context.dataset.label || '';
                         const emotionValue = context.parsed.y;
                         const emotion = Object.keys(emotionValues).find(

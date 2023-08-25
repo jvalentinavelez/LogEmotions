@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import { LocalizationProvider, PickersDay, DatePicker } from "@mui/x-date-pickers";
+import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { Badge, Typography } from "@mui/material";
 
 import classes from './LogsList.module.css';
 
@@ -29,13 +28,15 @@ const LogsList = ({logs})  => {
     const [userLogs, setUserLogs] = useState([]);
     const [isLoading, setIsLoading] = useState(true); 
     const [selectedDate, setSelectedDate] = useState(null); 
-    const [datesWithLogs, setDatesWithLogs] = useState([]);
+    //const [datesWithLogs, setDatesWithLogs] = useState([]);
     const [resetSelectedDate, setResetSelectedDate] = useState(false); 
-
+    
+    // Effect to filter logs based on userId and selected date
     useEffect(() => {
-      const filteredDates = logs.map(log => log.date);
-      setDatesWithLogs(filteredDates);
-
+      // Extract dates from logs
+      //const filteredDates = logs.map(log => log.date);
+      //setDatesWithLogs(filteredDates);
+      // Filter logs based on userId and selected date
       const filteredLogs = logs.filter(
         (log) =>
           log.userId === userId &&
@@ -49,6 +50,7 @@ const LogsList = ({logs})  => {
       }
     }, [logs, userId, selectedDate, resetSelectedDate]); 
 
+    // Function to handle date filter change
     const handleDateFilter = (date) => {
       setSelectedDate(date);
     };

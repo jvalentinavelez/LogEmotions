@@ -25,7 +25,6 @@ async function writeData(data) {
     const fileExists = await fs.access(filePath).then(() => true).catch(() => false);
     // Write the data to the JSON file
     await fs.writeFile(filePath, JSON.stringify(data), 'utf8');
-    console.log('Data written successfully.');
   } catch (error) {
     console.error('Error writing data:', error);
   }

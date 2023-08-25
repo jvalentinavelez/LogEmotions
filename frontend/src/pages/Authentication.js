@@ -55,7 +55,6 @@ export async function action({ request }) {
   localStorage.setItem('expiration', expiration.toISOString());
 
   localStorage.setItem('userId', userId);
-  console.log("userId"+userId);
 
   return redirect('/');
 }

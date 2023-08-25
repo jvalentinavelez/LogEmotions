@@ -3,8 +3,7 @@ import  React, {useState} from 'react';
 
 import { LocalizationProvider, PickersDay, StaticDatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { Badge, Typography } from "@mui/material";
-import { styled } from '@mui/system';
+import { Badge } from "@mui/material";
 
 
 import img1 from '../../assets/images/emotions/rad.png';
@@ -28,11 +27,6 @@ const CalendarLogs = ({logs}) => {
         awful: img5,
     };
 
-    const CustomToolbarTitle = styled(Typography)`
-  font-size: 50px; /* Change this value to adjust the font size */
-  font-weight: bold; /* You can adjust the font weight as well */
-`;
-
     return(
         <>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -43,7 +37,7 @@ const CalendarLogs = ({logs}) => {
                     disableFuture
                     showToolbar={false}
                     classes={{ toolbarTitle: classesCL.customTitle }} 
-                    componentsProps={{ //Remover botones OK, CANCEL
+                    componentsProps={{ 
                       actionBar: {
                         actions: [],
                       }

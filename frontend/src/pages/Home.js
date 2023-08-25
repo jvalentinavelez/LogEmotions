@@ -6,10 +6,9 @@ import img1 from '../assets/images/emotions/shuttle.png'
 function HomePage() {
   return (
     <PageContent title="Welcome!">
-      <p>Welcome to LogEmotions – Your Journey to Self-Discovery Begins Here 
-               </p>
+      <p>Welcome to LogEmotions – Your Journey to Self-Discovery Begins Here</p>
       <p>Start Logging Your Emotions. </p>
-      <div><img src={img1} style={{width: '40px', height: '40px'}} alt={"shuttle image"} /></div>
+      <div><img src={img1} style={{width: '40px', height: '40px'}} alt={"shuttle"} /></div>
     </PageContent>
   );
 }

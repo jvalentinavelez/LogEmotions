@@ -3,8 +3,7 @@ import {
     useNavigate,
     useNavigation,
     useActionData,
-    json,
-    redirect
+    json
 } from 'react-router-dom';
 
 import { useState } from 'react';
@@ -27,10 +26,12 @@ const LogForm = ({ method, log }) => {
   
     const isSubmitting = navigation.state === 'submitting';
 
+    // Get current date and default date
     const currDate = new Date();
     currDate.setDate(currDate.getDate());
     const defaultDate = currDate.toISOString().substring(0,10);
   
+    // Cancel button handler
     function cancelHandler() {
       navigate('..');
     }
@@ -52,86 +53,88 @@ const LogForm = ({ method, log }) => {
     };
     
     const handleFormSubmit = async (e, method) => {
-    
-    const logEntry = {      
-        date: e.target.date.value, 
-        notes: e.target.description.value, 
-        selectedEmotion: selectedEmotion, 
-        userId: userId,
-    };
-    const actionResult = await action({ method, logEntry });
+        // Prepare log entry data
+        const logEntry = {      
+            date: e.target.date.value, 
+            notes: e.target.description.value, 
+            selectedEmotion: selectedEmotion, 
+            userId: userId,
+        };
+        // Call action function to save log
+        const actionResult = await action({ method, logEntry });
 
-    if (actionResult.success) {
-        navigate('/logs');
-        } else {
-        
-        }
-    };
+        if (actionResult.success) {
+            navigate('/logs');
+            } else {
+            
+            }
+        };
       
-    return (
-        <Form method={method} className={classes.form} onSubmit={(e)=>handleFormSubmit(e,method)}>
-            {data && data.errors && (
-                <ul>
-                {Object.values(data.errors).map((err) => (
-                    <li key={err}>{err}</li>
-                ))}
-                </ul>
-            )}
-            <p>
-            <label htmlFor="date">Date</label>
-            <input
-                id="date"
-                type="date"
-                name="date"
-                required
-                defaultValue={log ? log.date : defaultDate}
-            />
-            </p>
-            <div>
-                <label htmlFor="title">Today I'm feeling</label>
-                <p className={classes.labelFeeling}>Pick an image for your current mood. <em>Neutral</em> is pre-selected.</p>
-                <div className={classes.buttonContainer}>
-                    {emotions.map(emotion => (
-                        <button
-                            id="emotion"
-                            key={emotion.id}
-                            className={classes.emotionImage}
-                            onClick={(e) => handleEmotionChange(e, emotion.id)}
-                        >
-                        <img src={emotion.image} alt={emotion.label} />
-                        </button>
+        return (
+            <Form method={method} className={classes.form} onSubmit={(e)=>handleFormSubmit(e,method)}>
+                {data && data.errors && (
+                    <ul>
+                    {Object.values(data.errors).map((err) => (
+                        <li key={err}>{err}</li>
                     ))}
-                </div>
-                {selectedEmotion && (
-                    <p>Mostly {selectedEmotion}</p>
+                    </ul>
                 )}
-            </div>
-            <p>
-            <label htmlFor="description">Notes</label>
-            <textarea
-                id="description"
-                name="description"
-                rows="5"
-                required
-                defaultValue={log ? log.description : ''}
-            />
-            </p>
-            <div className={classes.actions}>
-            <button type="button" onClick={cancelHandler} disabled={isSubmitting}>
-                Cancel
-            </button>
-            <button disabled={isSubmitting}>
-                {isSubmitting ? 'Submitting...' : 'Save'}
-            </button>
-            </div>
-            <p className={classes.invite}> Share your emotion notes with us! Our AI will analyze and label them in the <em>analysis</em> section of each input.
-            Later, enjoy easy-to-follow summaries of these labeled emotions over time</p>
-        </Form>
-    );
-}
+                <p>
+                <label htmlFor="date">Date</label>
+                <input
+                    id="date"
+                    type="date"
+                    name="date"
+                    required
+                    defaultValue={log ? log.date : defaultDate}
+                />
+                </p>
+                <div>
+                    <label htmlFor="title">Today I'm feeling</label>
+                    <p className={classes.labelFeeling}>Pick an image for your current mood. <em>Neutral</em> is pre-selected.</p>
+                    <div className={classes.buttonContainer}>
+                        {emotions.map(emotion => (
+                            <button
+                                id="emotion"
+                                key={emotion.id}
+                                className={classes.emotionImage}
+                                onClick={(e) => handleEmotionChange(e, emotion.id)}
+                            >
+                            <img src={emotion.image} alt={emotion.label} />
+                            </button>
+                        ))}
+                    </div>
+                    {selectedEmotion && (
+                        <p>Mostly {selectedEmotion}</p>
+                    )}
+                </div>
+                <p>
+                <label htmlFor="description">Notes</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="5"
+                    required
+                    defaultValue={log ? log.description : ''}
+                />
+                </p>
+                <div className={classes.actions}>
+                <button type="button" onClick={cancelHandler} disabled={isSubmitting}>
+                    Cancel
+                </button>
+                <button disabled={isSubmitting}>
+                    {isSubmitting ? 'Submitting...' : 'Save'}
+                </button>
+                </div>
+                <p className={classes.invite}> Share your emotion notes with us! Our AI will analyze and label them in the <em>analysis</em> section of each input.
+                Later, enjoy easy-to-follow summaries of these labeled emotions over time</p>
+            </Form>
+        );
+    }
   
 export default LogForm;
 
+// Function to perform action (save log)
 export async function action({method, logEntry}) {
     try {
         let url = 'http://localhost:8080/logs';

@@ -16,8 +16,6 @@ async function add(data) {
     // Add the new user with hashed password and generated ID to the array
     storedData.users.push({ ...data, password: hashedPw, id: userId });
     await writeData(storedData);
-    console.log("add");
-    console.log(storedData);
     return { id: userId, email: data.email };
 }
 

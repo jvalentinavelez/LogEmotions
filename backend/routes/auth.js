@@ -38,13 +38,12 @@ router.post('/signup', async (req, res, next) => {
   
     try {
       const createdUser = await add(data);
-      console.log(createdUser);
       const authToken = createJSONToken(createdUser.email);
       res
         .status(201)
         .json({ message: 'User created.', user: createdUser, token: authToken });
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       next(error); // Pass the error to the next middleware
     }
 });

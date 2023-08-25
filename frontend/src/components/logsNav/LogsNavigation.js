@@ -1,15 +1,12 @@
 import {Outlet, NavLink, useRouteLoaderData, useNavigate } from 'react-router-dom';
 
-import { useState } from 'react';
-
 import classes from './LogsNavigation.module.css';
 
 const LogsNavigation = () => {
   
   const token = useRouteLoaderData('root');
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   
-
   const handleAllLogsClick = () => {
     navigate('/logs');
   };

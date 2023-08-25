@@ -33,9 +33,6 @@ async function get(id) {
 
 // Add a new log
 async function add(data) {
-    console.log("add log");
-    console.log(generateId());
-    console.log(data);
     const storedData = await readData();
     if (!storedData.logs) {
       storedData.logs = [];
